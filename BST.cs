@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.Numerics;
 using System.Text;
+using static BinarySearchTrees.BST;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BinarySearchTrees
 {
@@ -11,119 +16,107 @@ namespace BinarySearchTrees
 
     public class BST
     {
-        //Inside your BST class, add a Node root variable and a default constructor
-        //that sets the root to null.
         public class Node
         {
-            //Node left, right;
-            Node left;
-            Node right;
-            Node root;
-            int data;
+            public int Data { get; set; }
+            public Node Left { get; set; }
+            public Node Right { get; set; }
 
+
+            // constructor with 1 data param
             public Node(int data)
             {
-                this.data = data;
+                this.Data = data;
             }
+            // constructor with no params
             public Node()
             {
-                root = null;
-                left = null;
-                right = null;
+                this.Data = 0;
+                this.Left = null;
+                this.Right = null;
             }
 
-            public Node(int data, Node left)
+            // constructor with 3 params
+            public Node(Node left, Node right, int data)
             {
-
+                this.Left = left;
+                this.Right = right;
+                this.Data = data;
             }
+        }
 
-            public void Add(int data)
+        //Inside your BST class, add a Node root variable and a default constructor
+        //that sets the root to null.
+        public Node Root { get; set; }
+        public BST(Node root)
+        {
+            this.Root = root;
+        }
+
+        public void Add(int value)
+        {
+            // If the root is null, set the root to a new BST node with the number
+            // in it using the right constructor.
+            if (Root == null)
+                Root = new Node(value);
+            //else if (value < Root.Data) // needs to be first node
+            //{
+            //    Root = new Node(value);
+            //}
+            //Otherwise, set current to the root and start a loop while current does not equal null to find the correct place to add.In the loop:
+            else
             {
-                if (root == null)
-                    root = new Node(data);
-                else if (data < root.data) // needs to be first node
+                Root = new Node(value);
+                Node current = Root;
+                while (current != null)
                 {
-                    root = new Node(data, root);
-                }
-                else
-                { // find place
-                  // have a current and previous pointer
-                    Node current = head, prev = head;
-                    while (current != null)
+                    //If the number is less than the current data, 
+                    if (value < current.Data)
                     {
-                        if (data > current.data)
+                        //If current’s left is null, add the number there, by making a new node and setting current’s left to it and return.
+                        //Move current to current’s left
+                        if (current.Left == null)
                         {
-                            prev = current; // save current as previous
-                            current = current.next; // move current forward
+                            current.Left = new Node(value);
+                            Console.WriteLine(current = current.Left);
                         }
-                        else // we found the place!
-                        {   // 1. Make a new node pointing to the current node
-                            Node n = new Node(data, current);
-                            // 2. Make the previous node point to it
-                            prev.next = n;
-                            return; // done with add, return
+                        //If the number is greater than the current data,
+                        if (value > current.Data)
+                        {
+                            if (current.Right == null)
+                            {
+                                //If current’s right is null, add the number there,   
+                                //By making a new node and setting current’s right to it and return.
+                                current.Right = new Node(value);
+                                //Move current to current’s right
+                                current = current.Right;
+                            }
                         }
                     }
-                    // couldn't find the place and got to end of list so add to the end
-                    prev.next = new Node(data, current);
                 }
+
             }
-
-            //    public void insert(int value)
-            //    {
-            //        if(value <= data)
-            //        {
-            //            if(left == null)
-            //            {
-            //                left = new Node(value);
-            //            }
-            //        else
-            //            {
-            //                left.insert(value);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            if(right == null)
-            //            {
-            //                right = new Node(value);
-            //            }
-            //            else
-            //            {
-            //                right.insert(value);
-            //            }
-            //        }
-            //    }
-
-            //    public Boolean contains(int value)
-            //    {
-            //        if(value == data)
-            //        {
-            //            return true;
-            //        }
-            //        else if(value < data)
-            //        {
-            //            if(left == null)
-            //            {
-            //                return false;
-            //            }
-            //            else
-            //            {
-            //                return left.contains(value);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            if(right == null)
-            //            {
-            //                return false;
-            //            }
-            //            else
-            //            {
-            //                return right.contains(value);
-            //            }
-            //        }
-            //    }
-            //}
         }
+
+        //Test your functions by calling them with data like add(5), add(3), add(7)
+        //    and then printing out the tree.If you’re using Visual C#, have 
+        //a textbox to add numbers to the binary search tree and buttons to add, find, 
+        //and clear the tree (this can just set the root to null). 
+        //You can use the following C# recursive print function in your BST class
+        //that prints to the console that I stole from stackoverflow 
+        //(call with:  tree.print(tree.root, ""); if tree is your BST object).
+
+        public void Print(Node root, string prefix)
+        {
+            if (root == null)
+            {
+                Console.WriteLine(prefix + "+- <null>");
+                return;
+            }
+            Console.WriteLine(prefix + "+- " + root.Data);
+            Print(root.Left, prefix + "|  ");
+            Print(root.Right, prefix + "|  ");
+            Console.ReadLine();
+        }
+    }
 }
