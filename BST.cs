@@ -72,7 +72,7 @@ namespace BinarySearchTrees
                         {
                             before.Left = new Node(value);
                             string prefix = "";
-                            Print(before, prefix);
+                            Print(before, prefix, value);
                         }
                     }
 
@@ -85,7 +85,7 @@ namespace BinarySearchTrees
                             //By making a new node and setting current’s right to it and return.
                             before.Right = new Node(value);
                             string prefix = "";
-                            Print(before, prefix);
+                            Print(before.Right, prefix, value);
                         }
                     }
 
@@ -108,32 +108,33 @@ namespace BinarySearchTrees
         //that prints to the console that I stole from stackoverflow 
         //(call with:  tree.print(tree.root, ""); if tree is your BST object).
 
-        public void Print(Node root, string prefix)
+        public void Print(Node root, string prefix, int value)
         {
+
+
             if (root == null)
             {
                 Console.WriteLine(prefix + "+- <null>");
                 return;
             }
-            //while (root != null)
+
+            //if (root.Data != value)
             //{
-            //if(root.Data != Root.Data)
-            //{
-    
-            //}
             Console.WriteLine(prefix + "+- " + root.Data);
+            //}
+
             if (root.Left != null)
-                {
-                Print(root.Left, prefix + "|  ");
-                }
-                if (root.Right != null)
-                {
-                    Print(root.Right, prefix + "|  ");
-                }
-            return;
-        //    break;
-        //}
+            {
+                Print(root.Left, prefix + "|  ", value);
+            }
+
+            if (root.Right != null)
+            {
+                Print(root.Right, prefix + "|  ", value);
+            }
+
+        }
 
     }
-    }
+
 }
