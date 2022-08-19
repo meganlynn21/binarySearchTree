@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Numerics;
-using System.Text;
-using static BinarySearchTrees.BST;
-using static System.Net.Mime.MediaTypeNames;
+
 
 namespace BinarySearchTrees
 {
@@ -27,11 +21,6 @@ namespace BinarySearchTrees
             {
                 this.Data = data;
             }
-            // constructor with no params
-            public Node()
-            {
-                this.Data = 0;
-            }
 
             // constructor with 3 params
             public Node(Node left, Node right, int data)
@@ -49,6 +38,10 @@ namespace BinarySearchTrees
         {
             this.Root = root;
         }
+        public BST()
+        {
+            Root = null;
+        }
 
         public void Add(int value)
         {
@@ -62,7 +55,6 @@ namespace BinarySearchTrees
                 Node before = this.Root;
                 while (before != null)
                 {
-                    Root = new Node(value);
                     //If the number is less than the current data, 
                     if (value < before.Data)
                     {
@@ -71,9 +63,10 @@ namespace BinarySearchTrees
                         if (before.Left == null)
                         {
                             before.Left = new Node(value);
-                            string prefix = "";
-                            Print(before, prefix, value);
+
+                            return;
                         }
+                        before = before.Left;
                     }
 
                     //If the number is greater than the current data,
@@ -84,16 +77,11 @@ namespace BinarySearchTrees
                             //If current’s right is null, add the number there,   
                             //By making a new node and setting current’s right to it and return.
                             before.Right = new Node(value);
-                            string prefix = "";
-                            Print(before.Right, prefix, value);
-                        }
-                    }
 
-                    else
-                    {
-                        return;
+                            return;
+                        }
+                        before = before.Right;
                     }
-                    break;
                 }
 
             }
@@ -108,29 +96,23 @@ namespace BinarySearchTrees
         //that prints to the console that I stole from stackoverflow 
         //(call with:  tree.print(tree.root, ""); if tree is your BST object).
 
-        public void Print(Node root, string prefix, int value)
+        public void Print(Node root, string prefix)
         {
-
-
             if (root == null)
             {
                 Console.WriteLine(prefix + "+- <null>");
                 return;
             }
-
-            //if (root.Data != value)
-            //{
             Console.WriteLine(prefix + "+- " + root.Data);
-            //}
 
             if (root.Left != null)
             {
-                Print(root.Left, prefix + "|  ", value);
+                Print(root.Left, prefix + "|  ");
             }
 
             if (root.Right != null)
             {
-                Print(root.Right, prefix + "|  ", value);
+                Print(root.Right, prefix + "|  ");
             }
 
         }

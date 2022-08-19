@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
-using static BinarySearchTrees.BST;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace BinarySearchTrees
 {
