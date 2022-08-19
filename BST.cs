@@ -1,12 +1,10 @@
 ﻿using System;
 
-
 namespace BinarySearchTrees
 {
     //BST and Node class: Create a BST (Binary Search Tree) class and inside it,
     //a Node class that has an int data variable and two Node variables that point to its
-    //left and right children.If you’re using C# or Java, write 3 constructors that have no
-    //arguments, 1 data argument, and all 3 arguments. 
+    //left and right children.Write 2 constructors
 
     public class BST
     {
@@ -16,7 +14,10 @@ namespace BinarySearchTrees
             public Node Left { get; set; }
             public Node Right { get; set; }
 
-            // constructor with 1 data param
+            // Default Constructor
+            public Node() { }
+
+            // constructor with 1 Data param
             public Node(int data)
             {
                 this.Data = data;
@@ -31,7 +32,7 @@ namespace BinarySearchTrees
             }
         }
 
-        //Inside your BST class, add a Node root variable and a default constructor
+        //Inside BST class, add a Node root variable and a default constructor
         //that sets the root to null.
         public Node Root { get; set; }
         public BST(Node root)
@@ -89,13 +90,7 @@ namespace BinarySearchTrees
         }
 
         //Test your functions by calling them with data like add(5), add(3), add(7)
-        //    and then printing out the tree.If you’re using Visual C#, have 
-        //a textbox to add numbers to the binary search tree and buttons to add, find, 
-        //and clear the tree (this can just set the root to null). 
-        //You can use the following C# recursive print function in your BST class
-        //that prints to the console that I stole from stackoverflow 
-        //(call with:  tree.print(tree.root, ""); if tree is your BST object).
-
+        // And then printing out the tree.
         public void Print(Node root, string prefix)
         {
             if (root == null)

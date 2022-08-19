@@ -6,7 +6,6 @@ namespace BinarySearchTrees
     {
         public void InsertIntoTree()
         {
-            //Node root = null;
             BST binarySearchTree = new BST();
             binarySearchTree.Add(5);
             binarySearchTree.Add(2);
