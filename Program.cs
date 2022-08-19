@@ -15,6 +15,5 @@ namespace BinarySearchTrees
             Insert insert = new Insert();
             insert.InsertIntoTree();
         }
-    }
-
-    }
+    }  
+}
