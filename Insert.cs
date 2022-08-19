@@ -16,6 +16,7 @@ namespace BinarySearchTrees
             BST binarySearchTree = new BST(root);
             binarySearchTree.Add(5);
             binarySearchTree.Add(2);
+            binarySearchTree.Add(4);
             binarySearchTree.Add(1);
             binarySearchTree.Add(7);
         }

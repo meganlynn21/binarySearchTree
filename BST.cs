@@ -70,10 +70,9 @@ namespace BinarySearchTrees
                         //Move current to current’s left
                         if (before.Left == null)
                         {
-                            BST tree = new BST(Root);
                             before.Left = new Node(value);
                             string prefix = "";
-                            tree.Print(before, prefix);
+                            Print(before, prefix);
                         }
                     }
 
@@ -84,10 +83,9 @@ namespace BinarySearchTrees
                         {
                             //If current’s right is null, add the number there,   
                             //By making a new node and setting current’s right to it and return.
-                            BST tree = new BST(Root);
                             before.Right = new Node(value);
                             string prefix = "";
-                            tree.Print(before, prefix);
+                            Print(before, prefix);
                         }
                     }
 
@@ -95,7 +93,9 @@ namespace BinarySearchTrees
                     {
                         return;
                     }
+                    break;
                 }
+
             }
 
         }
@@ -115,20 +115,25 @@ namespace BinarySearchTrees
                 Console.WriteLine(prefix + "+- <null>");
                 return;
             }
-            while (root != null)
-            {
-                Console.WriteLine(prefix + "+- " + root.Data);
-                if (root.Left != null)
+            //while (root != null)
+            //{
+            //if(root.Data != Root.Data)
+            //{
+    
+            //}
+            Console.WriteLine(prefix + "+- " + root.Data);
+            if (root.Left != null)
                 {
-                    Print(root.Left, prefix + "|  ");
+                Print(root.Left, prefix + "|  ");
                 }
                 if (root.Right != null)
                 {
                     Print(root.Right, prefix + "|  ");
                 }
-                break;
-            }
+            return;
+        //    break;
+        //}
 
-        }
+    }
     }
 }
