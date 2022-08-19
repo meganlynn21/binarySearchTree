@@ -70,33 +70,34 @@ namespace BinarySearchTrees
                         //Move current to current’s left
                         if (before.Left == null)
                         {
+                            BST tree = new BST(Root);
                             before.Left = new Node(value);
-                            //current = current.Left;
-                            //return;
                             string prefix = "";
-                            Print(before, prefix);
-                        }
-  
-                        //If the number is greater than the current data,
-                       else if (value > before.Data)
-                        {
-                            if (before.Right == null)
-                            {
-                                //If current’s right is null, add the number there,   
-                                //By making a new node and setting current’s right to it and return.
-                                before.Right = new Node(value);
-                                //Move current to current’s right
-                                before = before.Right;
-                            }
-                        }
-                        else
-                        {
-                            return;
+                            tree.Print(before, prefix);
                         }
                     }
-                }
 
+                    //If the number is greater than the current data,
+                    if (value > before.Data)
+                    {
+                        if (before.Right == null)
+                        {
+                            //If current’s right is null, add the number there,   
+                            //By making a new node and setting current’s right to it and return.
+                            BST tree = new BST(Root);
+                            before.Right = new Node(value);
+                            string prefix = "";
+                            tree.Print(before, prefix);
+                        }
+                    }
+
+                    else
+                    {
+                        return;
+                    }
+                }
             }
+
         }
 
         //Test your functions by calling them with data like add(5), add(3), add(7)
@@ -109,29 +110,25 @@ namespace BinarySearchTrees
 
         public void Print(Node root, string prefix)
         {
-            //if (root == null)
-            //{
-            //    Console.WriteLine(prefix + "+- <null>");
-            //    return;
-            //}
-            while(root != null)
+            if (root == null)
             {
-        
-                Console.WriteLine(prefix + "+- " + root.Data);
-                Print(root.Left, prefix + "|  ");
-                Print(root.Right, prefix + "|  ");
-                Console.ReadLine();
-                if(root == null)
-                {
-                    Console.WriteLine(prefix + "+- <null>");
-                    return;
-                }
-                else
-                {
-                    continue;
-                }
+                Console.WriteLine(prefix + "+- <null>");
+                return;
             }
- 
+            while (root != null)
+            {
+                Console.WriteLine(prefix + "+- " + root.Data);
+                if (root.Left != null)
+                {
+                    Print(root.Left, prefix + "|  ");
+                }
+                if (root.Right != null)
+                {
+                    Print(root.Right, prefix + "|  ");
+                }
+                break;
+            }
+
         }
     }
 }

@@ -12,14 +12,9 @@ namespace BinarySearchTrees
     {
         static void Main(string[] args)
         {
-            Node root = null ;
-            BST binarySearchTree = new BST(root);
-            string prefix = "";
-            binarySearchTree.Add(5);
-            binarySearchTree.Add(2);
-            binarySearchTree.Add(1);
-            //binarySearchTree.Print(binarySearchTree.Root, prefix);
+            Insert insert = new Insert();
+            insert.InsertIntoTree();
         }
+    }
 
     }
-}
