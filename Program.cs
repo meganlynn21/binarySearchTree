@@ -18,7 +18,7 @@ namespace BinarySearchTrees
             binarySearchTree.Add(5);
             binarySearchTree.Add(2);
             binarySearchTree.Add(1);
-            binarySearchTree.Print(binarySearchTree.Root, prefix);
+            //binarySearchTree.Print(binarySearchTree.Root, prefix);
         }
 
     }

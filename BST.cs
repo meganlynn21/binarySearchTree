@@ -22,7 +22,6 @@ namespace BinarySearchTrees
             public Node Left { get; set; }
             public Node Right { get; set; }
 
-
             // constructor with 1 data param
             public Node(int data)
             {
@@ -32,8 +31,6 @@ namespace BinarySearchTrees
             public Node()
             {
                 this.Data = 0;
-                this.Left = null;
-                this.Right = null;
             }
 
             // constructor with 3 params
@@ -59,38 +56,42 @@ namespace BinarySearchTrees
             // in it using the right constructor.
             if (Root == null)
                 Root = new Node(value);
-            //else if (value < Root.Data) // needs to be first node
-            //{
-            //    Root = new Node(value);
-            //}
             //Otherwise, set current to the root and start a loop while current does not equal null to find the correct place to add.In the loop:
             else
             {
-                Root = new Node(value);
-                Node current = Root;
-                while (current != null)
+                Node before = this.Root;
+                while (before != null)
                 {
+                    Root = new Node(value);
                     //If the number is less than the current data, 
-                    if (value < current.Data)
+                    if (value < before.Data)
                     {
                         //If current’s left is null, add the number there, by making a new node and setting current’s left to it and return.
                         //Move current to current’s left
-                        if (current.Left == null)
+                        if (before.Left == null)
                         {
-                            current.Left = new Node(value);
-                            Console.WriteLine(current = current.Left);
+                            before.Left = new Node(value);
+                            //current = current.Left;
+                            //return;
+                            string prefix = "";
+                            Print(before, prefix);
                         }
+  
                         //If the number is greater than the current data,
-                        if (value > current.Data)
+                       else if (value > before.Data)
                         {
-                            if (current.Right == null)
+                            if (before.Right == null)
                             {
                                 //If current’s right is null, add the number there,   
                                 //By making a new node and setting current’s right to it and return.
-                                current.Right = new Node(value);
+                                before.Right = new Node(value);
                                 //Move current to current’s right
-                                current = current.Right;
+                                before = before.Right;
                             }
+                        }
+                        else
+                        {
+                            return;
                         }
                     }
                 }
@@ -108,15 +109,29 @@ namespace BinarySearchTrees
 
         public void Print(Node root, string prefix)
         {
-            if (root == null)
+            //if (root == null)
+            //{
+            //    Console.WriteLine(prefix + "+- <null>");
+            //    return;
+            //}
+            while(root != null)
             {
-                Console.WriteLine(prefix + "+- <null>");
-                return;
+        
+                Console.WriteLine(prefix + "+- " + root.Data);
+                Print(root.Left, prefix + "|  ");
+                Print(root.Right, prefix + "|  ");
+                Console.ReadLine();
+                if(root == null)
+                {
+                    Console.WriteLine(prefix + "+- <null>");
+                    return;
+                }
+                else
+                {
+                    continue;
+                }
             }
-            Console.WriteLine(prefix + "+- " + root.Data);
-            Print(root.Left, prefix + "|  ");
-            Print(root.Right, prefix + "|  ");
-            Console.ReadLine();
+ 
         }
     }
 }
